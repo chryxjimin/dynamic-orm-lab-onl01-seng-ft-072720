@@ -56,7 +56,7 @@ class InteractiveRecord
    end
 
    def self.find_by(row)
-      #binding.pry
+      binding.pry
       sql = "SELECT * FROM #{table_name} WHERE #{column_names} = #{values_for_insert}"
       DB[:conn].execute(sql, column_names).each do |col_name|
         self.values_for_insert(col_name)
