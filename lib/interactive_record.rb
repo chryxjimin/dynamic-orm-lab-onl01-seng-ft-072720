@@ -55,11 +55,8 @@ class InteractiveRecord
       DB[:conn].execute(sql, name)
    end
 
-   def self.find_by(row)
-    # binding.pry
-      sql = "SELECT * FROM #{table_name} WHERE #{column_names} = ?"
-      DB[:conn].execute(sql, column_names).each do |row|
-         self.values_for_insert(row)
-      end
-   end
+  def self.find_by(hash)
+        DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{hash.keys.join} = '#{hash.values.join}'")
+        #binding.pry
+end
 end
